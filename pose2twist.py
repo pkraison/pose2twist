@@ -10,6 +10,7 @@ def parse_pose(line):
 
 def compute_twist(pos1, pos2, quat1, quat2, dt):
     # Linear velocity
+    print(pos1, pos2)
     linear_velocity = (pos2 - pos1) / dt
     
     # Angular velocity
@@ -37,14 +38,17 @@ def process_poses_and_times(pose_file_path, time_file_path):
     quaternions = []
     linear_velocities = []
     angular_velocities = []
-    
-    for i in range(len(poses)):
+    print(len(timestamps))
+    #print(len(poses))
+    dt = timestamps[1] - timestamps[0]
+    for i in range(len(poses)-1):
         pos, quat = parse_pose(poses[i])
         positions.append(pos)
         quaternions.append(quat)
         
-        if i > 0:
-            dt = timestamps[i] - timestamps[i-1]
+        if i > 0:  # and i < :
+        #    
+            #print(i, i-1)
             linear_velocity, angular_velocity = compute_twist(positions[i-1], positions[i], quaternions[i-1], quaternions[i], dt)
             linear_velocities.append(linear_velocity)
             angular_velocities.append(angular_velocity)
