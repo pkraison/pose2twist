@@ -1,6 +1,7 @@
 # pose2twist
 calculating linear and angular velocities from given pose and timestamps in kitti format.
-req: Python 3.8+
+req: Python 3.8+(install required packages)
+
 `python pose2twist.py`
 
 
